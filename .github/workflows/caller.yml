@@ -2,8 +2,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  testing:
+  install:
     uses: carvalheiro/TESTE-GH-RELEASE/.github/workflows/reusable_workflow.yml@main
     with:
       environment: deuboameurei
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo {{ github.sha }}
+    
+      
 
