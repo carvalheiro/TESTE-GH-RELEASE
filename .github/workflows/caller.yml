@@ -1,0 +1,8 @@
+on:
+  workflow_dispatch:
+jobs:
+  testing:
+    uses: carvalheiro/TESTE-GH-RELEASE/.github/workflows/reusable_workflow.yml@main
+    with:
+      environment: deuboameurei
+
