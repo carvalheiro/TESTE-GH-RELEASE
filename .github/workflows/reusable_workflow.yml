@@ -24,4 +24,4 @@ jobs:
   checking_commit:
     runs-on: ubuntu-latest
     steps:
-      - run: echo {{ github.sha }}
+      - run: echo ${{ github.sha }}
