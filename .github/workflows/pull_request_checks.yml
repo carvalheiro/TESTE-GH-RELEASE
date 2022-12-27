@@ -10,7 +10,8 @@ on:
     types: [synchronize]
 
 jobs:
-  build:
+  install:
+    if: github.envet.label.name == 'ci:run' || github.envet.label.name == 'ci:all'
     runs-on: ubuntu-latest
     name: Install
     steps:
@@ -28,3 +29,20 @@ jobs:
           echo $TESTE_1,
           echo $TESTE_2,
           echo $TESTE_3
+  lint:
+    name: Lint
+    needs: [install]
+    runs-on: ubuntu-latest
+    steps:
+      - name: ESLint
+        run: echo Rodou o Lint
+  jest:
+    name: Automated Tests
+    needs: [install]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Automated Tests
+        run: echo Rodou o Tests
+      
+    
+  
