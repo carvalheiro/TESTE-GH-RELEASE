@@ -4,20 +4,10 @@ name: Pull Request Checks
 on:
   workflow_dispatch:
     inputs:
-      environment:
-        type: environment
-        description: Select the environment
       boolean:
         type: boolean
-        description: Run all tests?
+        description: Should jest run for all files? If false, will just run for the ones we changed.
         default: false
-      choice:
-        type: choice
-        description: Make a choice
-        options:
-        - foo
-        - bar
-        - baz
   pull_request_target:
     types: [labeled]
 
