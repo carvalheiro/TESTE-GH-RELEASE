@@ -43,6 +43,24 @@ jobs:
     steps:
       - name: Automated Tests
         run: echo Rodou o Tests
+  ready_to_merge:
+    runs-on: ubuntu-20.04
+    if: always() # always run, so we never skip the check
+    needs: [install, lint, jest]
+    env:
+      PASSED: ${{ needs.install.outputs.success && needs.lint.outputs.success && needs.jest.outputs.success }}
+    steps:
+      # pass step only when output of previous after-shards job is set
+      # in case at least one of the shard fails, after-shards is skipped
+      # and the output will not be set, which will then cause the ci job to fail
+      - run: |
+          if [[ $PASSED == "true" ]]; then
+            echo "Tests has passed"
+            exit 0
+          else
+            echo "Tests has failed"
+            exit 1
+          fi
       
     
   
