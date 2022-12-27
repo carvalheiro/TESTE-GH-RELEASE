@@ -4,7 +4,7 @@ name: Pull Request Checks
 on:
   workflow_dispatch:
     inputs:
-      boolean:
+      run_all_tests:
         type: boolean
         description: Should jest run for all files? If false, will just run for the ones we changed.
         default: false
@@ -13,7 +13,7 @@ on:
 
 jobs:
   install:
-    if: (github.event_name == 'pull_request_target' && github.event.label.name == 'ci:run' || github.event.label.name == 'ci:run-all') || github.event_name == 'workflow_dispatch'
+    if: github.event.inputs.run_all_tests
     runs-on: ubuntu-latest
     name: Install
     steps:
