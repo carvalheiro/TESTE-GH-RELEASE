@@ -22,7 +22,7 @@ jobs:
       - name: Run a multi-line script
         env: 
           TESTE_1: ${{ github.event.label.name }}
-          TESTE_2: ${{ github.event.name }}
+          TESTE_2: ${{ github.event_name }}
           TESTE_3: ${{ github.event.review.state }}          
         run: |
           echo $TESTE_1,
