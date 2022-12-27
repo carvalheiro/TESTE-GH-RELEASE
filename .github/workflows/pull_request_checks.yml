@@ -45,10 +45,10 @@ jobs:
     if: always() # always run, so we never skip the check
     needs: [install, lint, jest]
     env:
-      PASSED: ${{ needs.install.outputs.success && needs.lint.outputs.success && needs.jest.outputs.success }}
-      TEST1: ${{ needs.install.outputs.success}}
-      TEST2: ${{ needs.lint.outputs.success}}
-      TEST3: ${{ needs.jest.outputs.success }}
+      PASSED: ${{ needs.install.result == 'success'  && needs.lint.result == 'success' && needs.jest.result == 'success' }}
+      TEST1: ${{ needs.install.result }}
+      TEST2: ${{ needs.lint.result }}
+      TEST3: ${{ needs.jest.result }}
     steps:
       # pass step only when output of previous after-shards job is set
       # in case at least one of the shard fails, after-shards is skipped
