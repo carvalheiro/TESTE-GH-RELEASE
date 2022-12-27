@@ -7,7 +7,7 @@ on:
 
 jobs:
   install:
-#     if: github.envet.label.name == 'ci:run' || github.envet.label.name == 'ci:all'
+    if: github.event.label.name == 'ci:run' || github.event.label.name == 'ci:run-all'
     runs-on: ubuntu-latest
     name: Install
     steps:
