@@ -44,6 +44,7 @@ jobs:
       - name: Automated Tests
         run: echo Rodou o Tests
   ready_to_merge:
+    name: Ready to Merge
     runs-on: ubuntu-20.04
     if: always() # always run, so we never skip the check
     needs: [install, lint, jest]
