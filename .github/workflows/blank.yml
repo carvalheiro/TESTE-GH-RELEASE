@@ -1,0 +1,28 @@
+
+name: CI
+
+on:
+  pull_request_review:
+    types: [submitted]
+  pull_request_target:
+    types: [labeled]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        env: 
+          TESTE_1: ${{ github.event.label.name }}
+          TESTE_2: ${{ github.event.type }}
+          TESTE_3: ${{ github.event.review.state }}          
+        run: |
+          echo TESTE_1,
+          echo TESTE_2,
+          echo TESTE_3
