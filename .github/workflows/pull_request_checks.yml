@@ -2,16 +2,12 @@
 name: Pull Request Checks
 
 on:
-  pull_request_review:
-    types: [submitted]
   pull_request_target:
     types: [labeled]
-  pull_request:
-    types: [synchronize]
 
 jobs:
   install:
-    if: github.envet.label.name == 'ci:run' || github.envet.label.name == 'ci:all'
+#     if: github.envet.label.name == 'ci:run' || github.envet.label.name == 'ci:all'
     runs-on: ubuntu-latest
     name: Install
     steps:
@@ -23,7 +19,7 @@ jobs:
       - name: Run a multi-line script
         env: 
           TESTE_1: ${{ github.event.label.name }}
-          TESTE_2: ${{ github.event_name }}
+          TESTE_2: ${{ github.envet.label.name == 'ci:run' }}
           TESTE_3: ${{ github.event.review.state }}          
         run: |
           echo $TESTE_1,
