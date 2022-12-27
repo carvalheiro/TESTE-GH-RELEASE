@@ -26,11 +26,13 @@ jobs:
         env: 
           TESTE_1: ${{ github.event.label.name }}
           TESTE_2: ${{ github.envet.label.name == 'ci:run' }}
-          TESTE_3: ${{ github.event.review.state }}          
+          TESTE_3: ${{ github.event.inputs.run_all_tests }}          
+          TESTE_4: ${{ github.event.inputs.run_all_tests == 'true' }}          
         run: |
           echo $TESTE_1,
           echo $TESTE_2,
-          echo $TESTE_3
+          echo $TESTE_3,
+          echo $TESTE_4
   lint:
     name: Lint
     needs: [install]
