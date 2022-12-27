@@ -13,7 +13,7 @@ on:
 
 jobs:
   install:
-    if: github.event.inputs.run_all_tests == 'true'
+    if: github.event.inputs.run_all_tests == 'false'
     runs-on: ubuntu-latest
     name: Install
     steps:
