@@ -23,6 +23,6 @@ jobs:
           TESTE_2: ${{ github.event.type }}
           TESTE_3: ${{ github.event.review.state }}          
         run: |
-          echo TESTE_1,
-          echo TESTE_2,
-          echo TESTE_3
+          echo $TESTE_1,
+          echo $TESTE_2,
+          echo $TESTE_3
