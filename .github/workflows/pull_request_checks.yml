@@ -30,7 +30,7 @@ jobs:
           git tag ${TAG_NAME}
           git push origin ${TAG_NAME}
   install:
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request_target' && github.event.label.name == 'ci:run' || github.event.label.name == 'ci:run-all')
+    if: always() && github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request_target' && github.event.label.name == 'ci:run' || github.event.label.name == 'ci:run-all')
     runs-on: ubuntu-latest
     name: Install
     needs: [generate-tag]
