@@ -62,6 +62,8 @@ jobs:
       TEST1: ${{ needs.install.result }}
       TEST2: ${{ needs.lint.result }}
       TEST3: ${{ needs.jest.result }}
+      GIT_LOG_BEFORE: ${{ github.event.before }}
+      GIT_LOG_AFTER: ${{ github.event.after }}
     steps:
       # pass step only when output of previous after-shards job is set
       # in case at least one of the shard fails, after-shards is skipped
@@ -69,7 +71,7 @@ jobs:
       - run: echo $TEST1
       - run: echo $TEST2
       - run: echo $TEST3
-      - run: echo $PASSED
+      - run: echo $GIT_LOG_BEFORE $GIT_LOG_AFTER
       - run: |
           if [[ $PASSED == "true" ]]; then
             echo "Tests has passed"
