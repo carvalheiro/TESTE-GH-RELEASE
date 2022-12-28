@@ -16,24 +16,11 @@ on:
     types: [closed]
 
 jobs:
-  generate-tag:
-    if: github.event.pull_request.merged == true
-    name: Tag Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Push Tag
-        run: |
-          TEMP=${GITHUB_HEAD_REF##*/}
-          TAG_NAME=${TEMP##[Cc][Kk]-[0-9]*-}
-          git tag ${TAG_NAME}
-          git push origin ${TAG_NAME}
+
   install:
-    if: always() && github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request_target' && github.event.label.name == 'ci:run' || github.event.label.name == 'ci:run-all')
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request_target' && github.event.label.name == 'ci:run' || github.event.label.name == 'ci:run-all') }}
     runs-on: ubuntu-latest
     name: Install
-    needs: [generate-tag]
     steps:
       - uses: actions/checkout@v3
       - name: Run a one-line script
